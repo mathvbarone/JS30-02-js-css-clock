@@ -19,6 +19,14 @@ function setDate() {
     const hours = now.getHours();
     const hoursDegrees = ((hours / 12) * 360) + 90;
     hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+    // FIXING TRANSITION BUG
+    if (secondsDegrees === 360) {
+        document.querySelector('.hand').style.transition = "none";
+    } else {
+        document.querySelector('.hand').style.transition = "cubic-bezier(0, 3.82, 0.58, 1) all 0.05s";
+    }
+
 }
 
 setInterval(setDate, 1000);
